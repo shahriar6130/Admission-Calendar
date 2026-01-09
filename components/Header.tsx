@@ -30,21 +30,17 @@ export const Header: React.FC<HeaderProps> = ({ Theme, setTheme, lang, setLang }
   const loc = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // ✅ safe translation fallback
   const tx = (key: string) =>
     translations[lang]?.[key] ?? translations.en?.[key] ?? key;
-
-  // ✅ close drawer on route change
+  
   useEffect(() => {
     setIsMenuOpen(false);
   }, [loc.pathname]);
 
-  // ✅ Theme TOGGLE (only state change; App.tsx will sync DOM/storage)
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  // ✅ LANG TOGGLE (state only; App.tsx will persist)
   const toggleLang = () => {
     setLang((prev) => (prev === "en" ? "bn" : "en"));
   };
