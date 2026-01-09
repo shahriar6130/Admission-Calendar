@@ -34,5 +34,6 @@ export function CountdownTimer({
     <span className={isUp ? "font-black text-red-500" : "font-black text-emerald-600"}>
       {label}
     </span>
+    
   );
 }
