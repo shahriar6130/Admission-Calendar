@@ -16,9 +16,6 @@ import { getEventById, deleteEvent } from "../services/eventService";
 import { AdmissionEvent } from "../types";
 import { translations } from "../i18n";
 
-/* =========================
-   ✅ Time Slot Storage (shared key)
-========================= */
 type TimeSlot = { start: string; end?: string; note?: string };
 const TIME_SLOTS_KEY = "adm_event_time_slots_v1";
 
@@ -59,7 +56,6 @@ const EventDetails: React.FC<{ lang: "en" | "bn" }> = ({ lang }) => {
   const [event, setEvent] = React.useState<AdmissionEvent | undefined>(undefined);
   const t = translations[lang] ?? translations.en;
 
-  // ✅ time slot state
   const [slot, setSlot] = React.useState<TimeSlot>({ start: "", end: "", note: "" });
   const [savedMsg, setSavedMsg] = React.useState("");
 
@@ -129,8 +125,6 @@ const EventDetails: React.FC<{ lang: "en" | "bn" }> = ({ lang }) => {
       });
     }
   };
-
-  // ✅ save time slot
   const handleSaveSlot = () => {
     if (!id) return;
     const all = loadAllTimeSlots();
@@ -139,7 +133,7 @@ const EventDetails: React.FC<{ lang: "en" | "bn" }> = ({ lang }) => {
     if (!slot.start.trim()) {
       delete all[id];
       saveAllTimeSlots(all);
-      setSavedMsg(lang === "bn" ? "সময় মুছে ফেলা হয়েছে ✅" : "Time removed ✅");
+      setSavedMsg(lang === "bn" ? "সময় মুছে ফেলা হয়েছে" : "Time removed");
       setTimeout(() => setSavedMsg(""), 2000);
       return;
     }
@@ -151,7 +145,7 @@ const EventDetails: React.FC<{ lang: "en" | "bn" }> = ({ lang }) => {
     };
 
     saveAllTimeSlots(all);
-    setSavedMsg(lang === "bn" ? "সময় সংরক্ষণ হয়েছে ✅" : "Time saved ✅");
+    setSavedMsg(lang === "bn" ? "সময় সংরক্ষণ হয়েছে" : "Time saved");
     setTimeout(() => setSavedMsg(""), 2000);
   };
 
@@ -232,7 +226,7 @@ const EventDetails: React.FC<{ lang: "en" | "bn" }> = ({ lang }) => {
 
         {/* Content Section */}
         <div className="p-10 md:p-14 space-y-14">
-          {/* ✅ Custom Time Slot Box */}
+          {/*Custom Time Slot Box */}
           <section className="animate-in fade-in slide-in-from-bottom-2 duration-700 delay-50">
             <div className="flex items-center space-x-4 mb-6">
               <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800/50 rounded-2xl flex items-center justify-center text-slate-700 dark:text-slate-200">
