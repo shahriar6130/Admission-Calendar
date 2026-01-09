@@ -1,5 +1,4 @@
 export type TimeSlot = { start: string; end?: string; note?: string };
-
 const TIME_SLOTS_KEY = "adm_event_time_slots_v1";
 
 function safeParse<T>(value: string | null, fallback: T): T {
