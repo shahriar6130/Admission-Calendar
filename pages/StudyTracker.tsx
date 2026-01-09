@@ -101,9 +101,11 @@ export const StudyTracker = ({ lang }: any) => {
                   value={newSession.subjectId}
                   onChange={e => setNewSession({...newSession, subjectId: e.target.value})}
                 >
+                
                   {subjects.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
                 </select>
               </div>
+              
               <div>
                 <label className="text-xs font-bold text-custom-muted block mb-1">Duration (Mins)</label>
                 <input 
@@ -112,6 +114,7 @@ export const StudyTracker = ({ lang }: any) => {
                   onChange={e => setNewSession({...newSession, minutes: parseInt(e.target.value) || 0})}
                 />
               </div>
+              
               <div>
                 <label className="text-xs font-bold text-custom-muted block mb-1">Date</label>
                 <input 
@@ -121,6 +124,7 @@ export const StudyTracker = ({ lang }: any) => {
                   onChange={e => setNewSession({...newSession, date: e.target.value})}
                 />
               </div>
+              
               <div className="flex space-x-2 pt-4">
                 <button onClick={handleAdd} className="flex-1 bg-indigo-600 text-white py-2 rounded-lg font-bold">Add</button>
                 <button onClick={() => setShowAdd(false)} className="flex-1 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white py-2 rounded-lg font-bold">Cancel</button>
