@@ -4,9 +4,6 @@ import type { AdmissionEvent, Category } from "../types";
 import { Storage } from "../services/storage";
 import { translations } from "../i18n";
 
-/* =========================
-   ✅ Time Slots Storage
-========================= */
 type TimeSlot = { start: string; end?: string; note?: string };
 const TIME_SLOTS_KEY = "adm_event_time_slots_v1";
 
@@ -34,7 +31,6 @@ function removeTimeSlot(eventId: string) {
   delete all[eventId];
   localStorage.setItem(TIME_SLOTS_KEY, JSON.stringify(all));
 }
-/* ========================= */
 
 type Props = {
   initialData?: AdmissionEvent;
@@ -49,7 +45,7 @@ const EventForm: React.FC<Props> = ({ initialData }) => {
   const lang = (Storage.getLang?.() as "en" | "bn") || "en";
   const t = translations[lang] ?? translations.en;
 
-  // ----------- Event Fields -----------
+  // Event Fields
   const [title, setTitle] = React.useState(initialData?.title ?? "");
   const [date, setDate] = React.useState(initialData?.date ?? "");
   const [category, setCategory] = React.useState<Category>(initialData?.category ?? "Admission");
@@ -58,7 +54,7 @@ const EventForm: React.FC<Props> = ({ initialData }) => {
   const [admitCardLink, setAdmitCardLink] = React.useState(initialData?.admitCardLink ?? "");
   const [notes, setNotes] = React.useState(initialData?.notes ?? "");
 
-  // ----------- Time Slot Fields -----------
+  // Time Slot Fields
   const [timeStart, setTimeStart] = React.useState("");
   const [timeEnd, setTimeEnd] = React.useState("");
   const [timeNote, setTimeNote] = React.useState("");
@@ -109,7 +105,6 @@ const EventForm: React.FC<Props> = ({ initialData }) => {
 
     Storage.saveEvents(updated);
 
-    // ✅ Save Time Slot (only if start time exists)
     if (timeStart.trim()) {
       setTimeSlot(id, {
         start: timeStart.trim(),
@@ -184,7 +179,6 @@ const EventForm: React.FC<Props> = ({ initialData }) => {
         </div>
       </div>
 
-      {/* ✅ Time Slot Box (what you asked for) */}
       <div className="space-y-3">
         <div className="text-sm font-black text-slate-700 dark:text-slate-200">
           {lang === "bn" ? "সময় সেট করুন" : "Set Time"}
