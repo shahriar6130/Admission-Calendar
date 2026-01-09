@@ -26,5 +26,4 @@ const AddEditEvent: React.FC = () => {
     </div>
   );
 };
-
 export default AddEditEvent;
