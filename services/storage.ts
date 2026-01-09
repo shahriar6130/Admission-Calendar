@@ -9,7 +9,6 @@ const KEYS = {
   THEME: "adm_theme",
   LANG: "adm_lang",
 };
-
 export const Storage = {
   getEvents: (): AdmissionEvent[] =>
     JSON.parse(localStorage.getItem(KEYS.EVENTS) || "[]"),
