@@ -6,9 +6,6 @@ import { translations } from "../i18n";
 import type { AdmissionEvent } from "../types";
 import { CountdownTimer } from "../components/CountdownTimer";
 
-/* =========================
-   ✅ Time Slot (same key as EventDetails)
-========================= */
 type TimeSlot = { start: string; end?: string; note?: string };
 const TIME_SLOTS_KEY = "adm_event_time_slots_v1";
 
@@ -37,21 +34,17 @@ function formatSlot(slot?: TimeSlot) {
   const end = slot.end ? to12Hour(slot.end) : "";
   return end ? `${start} – ${end}` : start;
 }
-/* ========================= */
 
 export const Home = ({ lang }: { lang: "en" | "bn" }) => {
-  const t = translations[lang] ?? translations.en; // ✅ fallback
+  const t = translations[lang] ?? translations.en; 
   const navigate = useNavigate();
 
   const [events, setEvents] = useState<AdmissionEvent[]>(() => Storage.getEvents());
   const [filters, setFilters] = useState({ cat: "All", search: "" });
 
-  // ✅ time slots as state so it refreshes reliably
   const [timeSlots, setTimeSlots] = useState<Record<string, TimeSlot>>(() =>
     loadAllTimeSlots()
   );
-
-  // ✅ refresh events + time slots when page focuses (after edit), and on first mount
   useEffect(() => {
     const refresh = () => {
       setEvents(Storage.getEvents());
@@ -122,7 +115,6 @@ export const Home = ({ lang }: { lang: "en" | "bn" }) => {
     }
   };
 
-  // ✅ check if date is already passed
   const isPast = (dateStr: string) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -133,7 +125,6 @@ export const Home = ({ lang }: { lang: "en" | "bn" }) => {
     return d.getTime() < today.getTime();
   };
 
-  // ✅ marquee text: notes first, else show ended msg
   const marqueeText = (e: AdmissionEvent) => {
     const note = (e.notes || "").trim();
 
@@ -153,7 +144,6 @@ export const Home = ({ lang }: { lang: "en" | "bn" }) => {
       {/* Search & News */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 pt-1">
         <div className="lg:col-span-8 space-y-3">
-          {/* ✅ compact search */}
           <div className="relative group">
             <Search
               className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors"
@@ -169,8 +159,6 @@ export const Home = ({ lang }: { lang: "en" | "bn" }) => {
               }
             />
           </div>
-
-          {/* ✅ compact marquee */}
           <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl px-3 py-2 flex items-center shadow-sm h-12 overflow-hidden">
             <div className="bg-indigo-600 text-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl flex items-center gap-2 z-10 shrink-0 shadow-lg">
               <Megaphone size={13} />
@@ -280,8 +268,7 @@ export const Home = ({ lang }: { lang: "en" | "bn" }) => {
                             <span className="text-[9px] font-black text-indigo-500/80 bg-indigo-50 dark:bg-indigo-500/10 px-2 py-0.5 rounded uppercase tracking-wider">
                               {e.category}
                             </span>
-
-                            {/* ✅ time badge */}
+                             
                             {slotText && (
                               <span className="text-[9px] font-black text-slate-600 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded uppercase tracking-wider">
                                 {slotText}
@@ -290,7 +277,6 @@ export const Home = ({ lang }: { lang: "en" | "bn" }) => {
                           </div>
                         </div>
 
-                        {/* ✅ buttons visible on mobile, hover-only on md+ */}
                         <div className="flex gap-2 opacity-100 translate-x-0 md:opacity-0 md:translate-x-2 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all">
                           <button
                             onClick={() => navigate(`/event/${e.id}`)}
