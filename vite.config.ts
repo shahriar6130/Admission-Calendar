@@ -1,0 +1,48 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    VitePWA({
+      disable: process.env.NODE_ENV === 'development',
+
+      registerType: 'prompt',
+
+      includeAssets: [
+        'favicon.ico',
+        'robots.txt',
+        'apple-touch-icon.png',
+        'icon-192.png',
+        'icon-512.png'
+      ],
+
+      manifest: {
+        name: 'Admission Calendar',
+        short_name: 'AdmissionCal',
+        description: 'Track Admission Events, Study Hours, and Deadlines',
+
+        start_url: '/',
+        scope: '/',
+        display: 'standalone',
+
+        theme_color: '#4f46e5',
+        background_color: '#0f172a',
+
+        icons: [
+          {
+            src: 'icon-192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'icon-512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      }
+    })
+  ]
+});

@@ -1,0 +1,5 @@
+{
+  "name": "Admission Calendar Clone",
+  "description": "A comprehensive admission event tracking application with calendar and list views, local persistence, and advanced filtering.",
+  "requestFramePermissions": []
+}
