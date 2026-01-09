@@ -31,7 +31,7 @@ const App: React.FC = () => {
 
   const t = translations[lang] ?? translations.en;
 
-  // ✅ Theme SYNC (Tailwind + data-Theme + meta + storage)
+  //(Tailwind + data-Theme + meta + storage)
   useEffect(() => {
     const root = document.documentElement;
 
@@ -49,13 +49,13 @@ const App: React.FC = () => {
     if (meta) meta.setAttribute("content", Theme === "dark" ? "#020617" : "#4f46e5");
   }, [Theme]);
 
-  // ✅ LANGUAGE SYNC
+  //LANGUAGE SYNC
   useEffect(() => {
     document.documentElement.lang = lang;
     Storage.setLang(lang);
   }, [lang]);
 
-  // ✅ stable props for Header
+  //stable props for Header
   const headerProps = useMemo(
     () => ({ Theme, setTheme, lang, setLang }),
     [Theme, lang]
@@ -81,7 +81,7 @@ const App: React.FC = () => {
           </Routes>
         </main>
 
-        {/* ✅ Footer (keep simple, you can customize) */}
+        {/*Footer (keep simple, you can customize) */}
         <footer className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
           <div className="container mx-auto max-w-7xl px-4 py-4 text-center text-sm text-slate-500 dark:text-slate-300">
             <p className="text-xs">
