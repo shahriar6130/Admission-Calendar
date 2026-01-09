@@ -31,5 +31,6 @@ export const BottomNav = ({ lang }: { lang: 'en' | 'bn' }) => {
         <span className="text-[10px] font-bold">{t.studyTracker}</span>
       </NavLink>
     </nav>
+    
   );
 };
