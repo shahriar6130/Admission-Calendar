@@ -1,7 +1,7 @@
 
 import { Category } from './types';
 
-// Key used for local storage of admission events
+//admission events
 export const STORAGE_KEY = 'adm_events';
 
 export const CATEGORIES: Category[] = ['Admission', 'Exam', 'Result', 'Admit Card', 'Other'];
