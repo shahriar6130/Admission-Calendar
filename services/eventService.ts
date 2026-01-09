@@ -1,4 +1,3 @@
-
 import { AdmissionEvent, Category } from '../types';
 import { STORAGE_KEY, DEMO_DATA } from '../constants';
 
