@@ -77,7 +77,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events }) => {
           {new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(currentDate)}
         </h2>
 
-        {/* ✅ Bigger, visible, fully clickable controls */}
+        {/*clickable controls */}
         <div className="flex items-center gap-2">
           <button type="button" onClick={prevMonth} className={IconBtn} aria-label="Previous month" title="Previous month">
             <ChevronLeft size={22} />
