@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Storage } from '../services/storage';
 import { Todo } from '../types';
